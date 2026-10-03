@@ -1,7 +1,9 @@
+import './styles/variables.css';
+import './styles/global.css';
+
 import { createElement } from './utils/dom.js';
 import { createHeader } from './components/header/header.js';
 import { createBoard } from './components/board/board.js';
-
 
 function initApp() {
   const appContainer = createElement('div', {
