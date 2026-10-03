@@ -1,69 +1,99 @@
-import { createEl } from '../../helpers/createEl';
+import { createElement } from '../../utils/dom';
+import './header.css';
 
-export function createHeader({ onNewGame, onLeaderboard }) {
-  const movesValueEl = createEl('span', { className: 'header__stat-value' }, '0');
-  const pairsValueEl = createEl('span', { className: 'header__stat-value' }, '0 / 8');
+export function createHeader(callbacks = {}) {
+  const title = createElement('h1', {
+    className: 'header-title',
+    text: 'Memory Game',
+  });
 
-  const newGameBtn = createEl(
-    'button',
-    {
-      className: 'btn btn--primary',
+  const newGameBtn = createElement('button', {
+    className: ['btn', 'btn-primary'],
+    attrs: {
+      id: 'btn-new-game',
       type: 'button',
-      'aria-label': 'Start a new game',
-      onClick: onNewGame,
+      'aria-label': 'Start new game',
     },
-    'New Game'
-  );
+    text: 'New Game',
+    events: {
+      click: () => {
+        if (callbacks.onNewGame) callbacks.onNewGame();
+      },
+    },
+  });
 
-  const leaderboardBtn = createEl(
-    'button',
-    {
-      className: 'btn btn--secondary',
+  const leaderboardBtn = createElement('button', {
+    className: ['btn', 'btn-secondary'],
+    attrs: {
+      id: 'btn-leaderboard',
       type: 'button',
       'aria-label': 'Open leaderboard',
-      onClick: onLeaderboard,
     },
-    'Leaderboard'
-  );
+    text: 'Leaderboard',
+    events: {
+      click: () => {
+        if (callbacks.onLeaderboard) callbacks.onLeaderboard();
+      },
+    },
+  });
 
-  const headerElement = createEl(
-    'header',
-    { className: 'header' },
-    createEl(
-      'div',
-      { className: 'header__container' },
-      createEl(
-        'div',
-        { className: 'header__controls' },
-        newGameBtn,
-        leaderboardBtn
-      ),
-      createEl(
-        'div',
-        { className: 'header__stats' },
-        createEl(
-          'div',
-          { className: 'header__stat-item' },
-          createEl('span', { className: 'header__stat-label' }, 'Moves: '),
-          movesValueEl
-        ),
-        createEl(
-          'div',
-          { className: 'header__stat-item' },
-          createEl('span', { className: 'header__stat-label' }, 'Pairs: '),
-          pairsValueEl
-        )
-      )
-    )
-  );
+  const headerActions = createElement('div', {
+    className: 'header-actions',
+    children: [newGameBtn, leaderboardBtn],
+  });
 
-  const updateStats = (moves, matchedPairs) => {
-    movesValueEl.textContent = String(moves);
-    pairsValueEl.textContent = `${matchedPairs} / 8`;
-  };
+  const topBar = createElement('div', {
+    className: 'header-top-bar',
+    children: [title, headerActions],
+  });
+
+  const movesLabel = createElement('span', {
+    className: 'stat-label',
+    text: 'Moves:',
+  });
+
+  const movesValueEl = createElement('span', {
+    className: 'stat-value',
+    attrs: { id: 'moves-counter' },
+    text: '0',
+  });
+
+  const movesStat = createElement('div', {
+    className: 'stat-item',
+    children: [movesLabel, movesValueEl],
+  });
+
+  const pairsLabel = createElement('span', {
+    className: 'stat-label',
+    text: 'Pairs found:',
+  });
+
+  const pairsValueEl = createElement('span', {
+    className: 'stat-value',
+    attrs: { id: 'pairs-counter' },
+    text: '0 / 8',
+  });
+
+  const pairsStat = createElement('div', {
+    className: 'stat-item',
+    children: [pairsLabel, pairsValueEl],
+  });
+
+  const statsPanel = createElement('div', {
+    className: 'stats-panel',
+    children: [movesStat, pairsStat],
+  });
+
+  const headerElement = createElement('header', {
+    className: 'header',
+    children: [topBar, statsPanel],
+  });
 
   return {
-    element: headerElement,
-    updateStats,
+    headerElement,
+    movesValueEl,
+    pairsValueEl,
+    newGameBtn,
+    leaderboardBtn,
   };
 }

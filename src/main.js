@@ -1,10 +1,36 @@
-import './styles/header.css';
-import { createHeader } from './components/Header/Header.js';
+import { createElement } from './utils/dom.js';
+import { createHeader } from './components/header/header.js';
+import { createBoard } from './components/board/board.js';
 
-const appContainer = document.body;
 
-const header = createHeader({
-  
-});
+function initApp() {
+  const appContainer = createElement('div', {
+    className: 'app-container',
+  });
 
-appContainer.appendChild(header.element);
+  const { headerElement } = createHeader({
+    onNewGame: () => {
+      // TODO
+    },
+    onLeaderboard: () => {
+      // TODO
+    },
+  });
+
+  const { boardElement } = createBoard({
+    onCardClick: () => {
+      // TODO
+    },
+  });
+
+  appContainer.appendChild(headerElement);
+  appContainer.appendChild(boardElement);
+
+  document.body.appendChild(appContainer);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
