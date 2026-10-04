@@ -6,6 +6,7 @@ import { createHeader } from './components/header/header.js';
 import { createBoard } from './components/board/board.js';
 import { GameManager } from './game/game.js';
 import { Modal } from './components/modal/modal.js';
+import { createLeaderboardContent } from './components/leaderboard/leaderboard.js';
 
 function initApp() {
   const appContainer = createElement('div', {
