@@ -1,22 +1,3 @@
-/**
- * DOM utility module.
- * Strictly adheres to assignment constraints:
- * - Uses ONLY document.createElement and standard DOM node methods.
- * - Zero usage of innerHTML, outerHTML, or insertAdjacentHTML.
- */
-
-/**
- * Creates an HTML element with attributes, class names, text content, and children.
- *
- * @param {string} tag - HTML tag name to create
- * @param {Object} [options] - Configuration options
- * @param {string|string[]} [options.className] - CSS class name or array of classes
- * @param {string} [options.text] - Plain text content (safe textNode assignment)
- * @param {Object.<string, string>} [options.attrs] - HTML attributes to set
- * @param {Object.<string, Function>} [options.events] - Event listeners to attach
- * @param {Array<Node|string>} [options.children] - Child nodes or text strings to append
- * @returns {HTMLElement}
- */
 export function createElement(tag, options = {}) {
   const element = document.createElement(tag);
 
@@ -61,10 +42,6 @@ export function createElement(tag, options = {}) {
   return element;
 }
 
-/**
- * Safely removes all child elements from a parent node without innerHTML.
- * @param {HTMLElement} parentNode
- */
 export function clearChildren(parentNode) {
   if (!parentNode) return;
   while (parentNode.firstChild) {

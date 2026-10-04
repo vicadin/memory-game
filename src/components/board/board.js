@@ -1,4 +1,4 @@
-import { createElement } from '../../utils/dom.js';
+import { createElement, clearChildren } from '../../utils/dom.js';
 import './board.css';
 
 export const CARD_EMOJIS = ['🦊', '🐼', '🐨', '🦁', '🐯', '🐵', '🦄', '🐙'];
@@ -35,13 +35,13 @@ export function createCardElement({ id, emoji, onClick }) {
       type: 'button',
       'data-card-id': String(id),
       'data-card-emoji': emoji,
-      'aria-label': 'Hidden card',
+      'aria-label': 'Hidden memory card',
     },
     children: [cardInner],
     events: {
       click: (e) => {
         if (typeof onClick === 'function') {
-          onClick(e, cardElement, { id, emoji });
+          onClick(cardElement, { id, emoji });
         }
       },
     },
@@ -50,34 +50,30 @@ export function createCardElement({ id, emoji, onClick }) {
   return cardElement;
 }
 
-export function createBoard(options = {}) {
-  const emojis = options.emojis || CARD_EMOJIS;
-  const onCardClick = options.onCardClick;
-
-  const cardList = [...emojis, ...emojis].map((emoji, index) => ({
-    id: index,
-    emoji,
-  }));
-
-  const cardElements = cardList.map((cardData) =>
-    createCardElement({
-      id: cardData.id,
-      emoji: cardData.emoji,
-      onClick: onCardClick,
-    })
-  );
-
+export function createBoard() {
   const boardElement = createElement('main', {
     className: 'game-board',
     attrs: {
       id: 'game-board',
       'aria-label': 'Memory game board',
     },
-    children: cardElements,
   });
+
+  function renderBoard(cardsList, onCardClick) {
+    clearChildren(boardElement);
+    const cardElements = cardsList.map((cardData) =>
+      createCardElement({
+        id: cardData.id,
+        emoji: cardData.emoji,
+        onClick: onCardClick,
+      })
+    );
+    cardElements.forEach((el) => boardElement.appendChild(el));
+    return cardElements;
+  }
 
   return {
     boardElement,
-    cardElements,
+    renderBoard,
   };
 }

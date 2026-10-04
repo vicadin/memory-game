@@ -4,31 +4,53 @@ import './styles/global.css';
 import { createElement } from './utils/dom.js';
 import { createHeader } from './components/header/header.js';
 import { createBoard } from './components/board/board.js';
+import { GameManager } from './game/game.js';
 
 function initApp() {
   const appContainer = createElement('div', {
     className: 'app-container',
   });
 
-  const { headerElement } = createHeader({
+  let gameManager = null;
+
+  const { headerElement, movesValueEl, pairsValueEl } = createHeader({
     onNewGame: () => {
-      // TODO
+      if (gameManager) {
+        gameManager.startNewGame();
+      }
     },
     onLeaderboard: () => {
-      // TODO
+      const content = createLeaderboardContent();
+
+      const closeBtn = createElement('button', {
+        className: ['btn', 'btn-secondary'],
+        attrs: {
+          type: 'button',
+        },
+        text: 'Close',
+        events: {
+          click: () => sharedModal.close(),
+        },
+      });
+
+    
     },
   });
 
-  const { boardElement } = createBoard({
-    onCardClick: () => {
-      // TODO
-    },
-  });
+  const { boardElement, renderBoard } = createBoard();
 
   appContainer.appendChild(headerElement);
   appContainer.appendChild(boardElement);
 
   document.body.appendChild(appContainer);
+
+  gameManager = new GameManager({
+    movesValueEl,
+    pairsValueEl,
+    renderBoard,
+  });
+
+  gameManager.startNewGame();
 }
 
 if (document.readyState === 'loading') {
