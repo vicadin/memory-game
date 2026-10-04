@@ -5,11 +5,14 @@ import { createElement } from './utils/dom.js';
 import { createHeader } from './components/header/header.js';
 import { createBoard } from './components/board/board.js';
 import { GameManager } from './game/game.js';
+import { Modal } from './components/modal/modal.js';
 
 function initApp() {
   const appContainer = createElement('div', {
     className: 'app-container',
   });
+
+  const sharedModal = new Modal();
 
   let gameManager = null;
 
@@ -33,7 +36,11 @@ function initApp() {
         },
       });
 
-    
+      sharedModal.open({
+        title: 'Leaderboard',
+        body: content,
+        actions: [closeBtn],
+      });
     },
   });
 
@@ -48,6 +55,7 @@ function initApp() {
     movesValueEl,
     pairsValueEl,
     renderBoard,
+    modal: sharedModal,
   });
 
   gameManager.startNewGame();
