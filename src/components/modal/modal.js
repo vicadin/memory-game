@@ -86,6 +86,10 @@ export class Modal {
     this.isOpen = true;
     this.backdropElement.classList.add('open');
     document.body.classList.add('modal-open');
+    const appContainer = document.querySelector('.app-container');
+    if (appContainer) {
+      appContainer.inert = true;
+    }
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
@@ -95,6 +99,10 @@ export class Modal {
     this.isOpen = false;
     this.backdropElement.classList.remove('open');
     document.body.classList.remove('modal-open');
+    const appContainer = document.querySelector('.app-container');
+    if (appContainer) {
+      appContainer.inert = false;
+    }
     window.removeEventListener('keydown', this.handleKeyDown);
 
     if (typeof this.onCloseCallback === 'function') {
