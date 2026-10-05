@@ -22,7 +22,7 @@
 }
 
 .card:focus-visible .card-shirt {
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px var(--color-violet-glow);
 }
 
 .card-inner {
@@ -32,11 +32,12 @@
   border-radius: var(--radius-md);
   transform-style: preserve-3d;
   transition: transform var(--transition-flip);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 6px 18px rgba(135, 114, 173, 0.24);
 }
 
 .card:not(.flipped):not(.matched):hover .card-inner {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(135, 114, 173, 0.32), 0 0 12px var(--color-violet-glow);
 }
 
 .card.flipped .card-inner,
@@ -61,26 +62,31 @@
 
 .card-shirt {
   background: var(--color-card-back);
-  border: 1px solid var(--color-card-border);
-  color: rgba(255, 255, 255, 0.7);
-  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.3);
 }
 
 .card-shirt-icon {
-  font-size: 1.5rem;
-  opacity: 0.8;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  font-size: 1.6rem;
+  color: #fff9be;
+  filter: drop-shadow(0 2px 4px rgba(80, 55, 110, 0.3));
+  transition: transform var(--transition-normal);
+}
+
+.card:not(.flipped):not(.matched):hover .card-shirt-icon {
+  transform: scale(1.15) rotate(15deg);
 }
 
 .card-face {
   background-color: var(--color-card-front);
   transform: rotateY(180deg);
-  border: 2px solid transparent;
+  border: 2px solid #e7e0f2;
 }
 
 .card.matched .card-face {
-  border-color: var(--color-success);
-  background-color: #f0fdf4;
+  border-color: var(--color-matched-border);
+  background-color: var(--color-matched-bg);
+  box-shadow: 0 0 14px var(--color-mint-glow);
 }
 
 .card-emoji {

@@ -1,26 +1,48 @@
 :root {
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-hover: #334155;
-  --color-border: #334155;
-  --color-primary: #6366f1;
-  --color-primary-hover: #4f46e5;
-  --color-secondary: #0ea5e9;
-  --color-secondary-hover: #0284c7;
-  --color-text-main: #f8fafc;
-  --color-text-muted: #94a3b8;
-  --color-card-back: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  --color-bg: #efeaf6;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f7f4fc;
+  --color-border: #dcd3eb;
+
+  --color-violet: #ad9ccb;
+  --color-violet-dark: #7b65a4;
+  --color-violet-hover: #9c89be;
+  --color-violet-glow: rgba(173, 156, 203, 0.45);
+
+  --color-mint: #72ccb7;
+  --color-mint-dark: #2f8c77;
+  --color-mint-hover: #5ec2ab;
+  --color-mint-glow: rgba(114, 204, 183, 0.4);
+
+  --color-yellow: #f6e355;
+  --color-yellow-dark: #3a2e04;
+  --color-yellow-hover: #ead53d;
+  --color-yellow-glow: rgba(246, 227, 85, 0.45);
+
+  --color-primary: var(--color-yellow);
+  --color-primary-hover: var(--color-yellow-hover);
+  --color-secondary: var(--color-mint);
+  --color-secondary-hover: var(--color-mint-hover);
+
+  --color-text-main: #2b203c;
+  --color-text-muted: #6f6182;
+
+  --color-card-back: linear-gradient(145deg, #ad9ccb 0%, #8ed7c6 100%);
   --color-card-front: #ffffff;
-  --color-card-border: rgba(255, 255, 255, 0.12);
-  --color-success: #10b981;
+  --color-card-border: rgba(255, 255, 255, 0.65);
+  --color-card-icon: #fdf5a6;
+
+  --color-success: #72ccb7;
+  --color-matched-bg: #f2fbf8;
+  --color-matched-border: #72ccb7;
 
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --shadow-card: 0 8px 16px -4px rgba(0, 0, 0, 0.35);
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 6px rgba(135, 114, 173, 0.12);
+  --shadow-md: 0 8px 24px rgba(135, 114, 173, 0.16);
+  --shadow-card: 0 8px 20px -4px rgba(135, 114, 173, 0.28);
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-flip: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
