@@ -1,12 +1,11 @@
 import { createElement, clearChildren } from '../../utils/dom.js';
+import { CARD_VISUALS } from '../../constants/index.js';
 import './board.css';
-
-export const CARD_EMOJIS = ['🦊', '🐼', '🐨', '🦁', '🐯', '🐵', '🦄', '🐙'];
 
 export function createCardElement({ id, emoji, onClick }) {
   const shirtPattern = createElement('span', {
     className: 'card-shirt-icon',
-    text: '✦',
+    text: CARD_VISUALS.SHIRT_ICON,
   });
 
   const cardShirt = createElement('div', {

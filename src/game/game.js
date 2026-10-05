@@ -1,8 +1,12 @@
 import { shuffle } from '../utils/shuffle.js';
-import { CARD_EMOJIS } from '../components/board/board.js';
 import { createElement } from '../utils/dom.js';
-
-const STORAGE_KEY = 'memory_game_leaderboard';
+import {
+  CARD_EMOJIS,
+  GAME_CONFIG,
+  TIMING,
+  STORAGE_KEYS,
+  UI_TEXT,
+} from '../constants/index.js';
 
 export function getCurrentDateFormatted() {
   const now = new Date();
@@ -14,7 +18,7 @@ export function getCurrentDateFormatted() {
 
 export function saveScoreToLeaderboard(moves) {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEYS.LEADERBOARD);
     const records = raw ? JSON.parse(raw) : [];
 
     const newRecord = {
@@ -32,8 +36,8 @@ export function saveScoreToLeaderboard(moves) {
       return a.timestamp - b.timestamp;
     });
 
-    const top10 = records.slice(0, 10);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(top10));
+    const topRecords = records.slice(0, GAME_CONFIG.LEADERBOARD_MAX_ENTRIES);
+    localStorage.setItem(STORAGE_KEYS.LEADERBOARD, JSON.stringify(topRecords));
   } catch (error) {
     console.error('Failed to save to localStorage:', error);
   }
@@ -88,7 +92,7 @@ export class GameManager {
       this.movesValueEl.textContent = String(this.moves);
     }
     if (this.pairsValueEl) {
-      this.pairsValueEl.textContent = `${this.matchedPairs} / 8`;
+      this.pairsValueEl.textContent = `${this.matchedPairs} / ${GAME_CONFIG.TOTAL_PAIRS}`;
     }
   }
 
@@ -127,7 +131,7 @@ export class GameManager {
     this.firstCard = null;
     this.secondCard = null;
 
-    if (this.matchedPairs === 8) {
+    if (this.matchedPairs === GAME_CONFIG.TOTAL_PAIRS) {
       this.handleVictory();
     }
   }
@@ -145,7 +149,7 @@ export class GameManager {
       this.secondCard = null;
       this.isLocked = false;
       this.mismatchTimeoutId = null;
-    }, 900);
+    }, TIMING.MISMATCH_FLIP_DELAY_MS);
   }
 
   handleVictory() {
@@ -158,12 +162,12 @@ export class GameManager {
 
   showVictoryModal() {
     const messageEl = createElement('p', {
-      text: 'Memory level: absolutely legendary 🎊',
+      text: UI_TEXT.VICTORY_MESSAGE,
     });
 
     const statsEl = createElement('p', {
       children: [
-        document.createTextNode('Total moves taken: '),
+        document.createTextNode(UI_TEXT.VICTORY_MOVES_LABEL),
         createElement('span', {
           className: 'modal-highlight',
           text: String(this.moves),
@@ -178,7 +182,7 @@ export class GameManager {
       attrs: {
         type: 'button',
       },
-      text: 'New Game',
+      text: UI_TEXT.BUTTON_NEW_GAME,
       events: {
         click: () => {
           this.modal.close();
@@ -192,7 +196,7 @@ export class GameManager {
       attrs: {
         type: 'button',
       },
-      text: 'Close',
+      text: UI_TEXT.BUTTON_CLOSE,
       events: {
         click: () => {
           this.modal.close();
@@ -201,7 +205,7 @@ export class GameManager {
     });
 
     this.modal.open({
-      title: 'Victory!',
+      title: UI_TEXT.VICTORY_TITLE,
       body: modalBody,
       actions: [modalNewGameBtn, modalCloseBtn],
     });

@@ -4,9 +4,10 @@ import './styles/global.css';
 import { createElement } from './utils/dom.js';
 import { createHeader } from './components/header/header.js';
 import { createBoard } from './components/board/board.js';
-import { GameManager } from './game/game.js';
 import { Modal } from './components/modal/modal.js';
+import { GameManager } from './game/game.js';
 import { createLeaderboardContent } from './components/leaderboard/leaderboard.js';
+import { UI_TEXT } from './constants/index.js';
 
 function initApp() {
   const appContainer = createElement('div', {
@@ -31,14 +32,14 @@ function initApp() {
         attrs: {
           type: 'button',
         },
-        text: 'Close',
+        text: UI_TEXT.BUTTON_CLOSE,
         events: {
           click: () => sharedModal.close(),
         },
       });
 
       sharedModal.open({
-        title: 'Leaderboard',
+        title: UI_TEXT.BUTTON_LEADERBOARD,
         body: content,
         actions: [closeBtn],
       });

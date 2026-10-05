@@ -1,10 +1,11 @@
-import { createElement } from '../../utils/dom';
+import { createElement } from '../../utils/dom.js';
+import { UI_TEXT, GAME_CONFIG } from '../../constants/index.js';
 import './header.css';
 
 export function createHeader(callbacks = {}) {
   const title = createElement('h1', {
     className: 'header-title',
-    text: 'Memory Game',
+    text: UI_TEXT.APP_TITLE,
   });
 
   const newGameBtn = createElement('button', {
@@ -14,7 +15,7 @@ export function createHeader(callbacks = {}) {
       type: 'button',
       'aria-label': 'Start new game',
     },
-    text: 'New Game',
+    text: UI_TEXT.BUTTON_NEW_GAME,
     events: {
       click: () => {
         if (callbacks.onNewGame) callbacks.onNewGame();
@@ -29,7 +30,7 @@ export function createHeader(callbacks = {}) {
       type: 'button',
       'aria-label': 'Open leaderboard',
     },
-    text: 'Leaderboard',
+    text: UI_TEXT.BUTTON_LEADERBOARD,
     events: {
       click: () => {
         if (callbacks.onLeaderboard) callbacks.onLeaderboard();
@@ -49,7 +50,7 @@ export function createHeader(callbacks = {}) {
 
   const movesLabel = createElement('span', {
     className: 'stat-label',
-    text: 'Moves:',
+    text: UI_TEXT.LABEL_MOVES,
   });
 
   const movesValueEl = createElement('span', {
@@ -65,13 +66,13 @@ export function createHeader(callbacks = {}) {
 
   const pairsLabel = createElement('span', {
     className: 'stat-label',
-    text: 'Pairs found:',
+    text: UI_TEXT.LABEL_PAIRS,
   });
 
   const pairsValueEl = createElement('span', {
     className: 'stat-value',
     attrs: { id: 'pairs-counter' },
-    text: '0 / 8',
+    text: `0 / ${GAME_CONFIG.TOTAL_PAIRS}`,
   });
 
   const pairsStat = createElement('div', {
