@@ -1,5 +1,5 @@
-import { createElement } from '../../utils/dom.js';
-import { STORAGE_KEYS, GAME_CONFIG, UI_TEXT } from '../../constants/index.js';
+import { createElement } from '@/utils/dom.js';
+import { STORAGE_KEYS, GAME_CONFIG, UI_TEXT } from '@/constants/index.js';
 import './leaderboard.css';
 
 export function getLeaderboardRecords() {

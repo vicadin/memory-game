@@ -1,12 +1,12 @@
-import { shuffle } from '../utils/shuffle.js';
-import { createElement } from '../utils/dom.js';
+import { shuffle } from '@/utils/shuffle.js';
+import { createElement } from '@/utils/dom.js';
 import {
   CARD_EMOJIS,
   GAME_CONFIG,
   TIMING,
   STORAGE_KEYS,
   UI_TEXT,
-} from '../constants/index.js';
+} from '@/constants/index.js';
 
 export function getCurrentDateFormatted() {
   const now = new Date();

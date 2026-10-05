@@ -26,7 +26,7 @@ export const UI_TEXT = {
   LABEL_MOVES: 'Moves:',
   LABEL_PAIRS: 'Pairs found:',
   VICTORY_TITLE: 'Hooray!',
-  VICTORY_MESSAGE: 'Memory level: Absolutely legendary 🎊',
+  VICTORY_MESSAGE: 'Memory level: absolutely legendary 🎊',
   VICTORY_MOVES_LABEL: 'Total moves taken: ',
   LEADERBOARD_TITLE: 'Top 10 Scores',
   LEADERBOARD_EMPTY_ICON: '👻',

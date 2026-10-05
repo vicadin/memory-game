@@ -1,5 +1,5 @@
-import { createElement } from '../../utils/dom.js';
-import { UI_TEXT, GAME_CONFIG } from '../../constants/index.js';
+import { createElement } from '@/utils/dom.js';
+import { UI_TEXT, GAME_CONFIG } from '@/constants/index.js';
 import './header.css';
 
 export function createHeader(callbacks = {}) {

@@ -1,4 +1,4 @@
-import { createElement, clearChildren } from '../../utils/dom.js';
+import { createElement, clearChildren } from '@/utils/dom.js';
 import './modal.css';
 
 export class Modal {

@@ -1,5 +1,5 @@
-import { createElement, clearChildren } from '../../utils/dom.js';
-import { CARD_VISUALS } from '../../constants/index.js';
+import { createElement, clearChildren } from '@/utils/dom.js';
+import { CARD_VISUALS } from '@/constants/index.js';
 import './board.css';
 
 export function createCardElement({ id, emoji, onClick }) {

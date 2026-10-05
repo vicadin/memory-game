@@ -1,13 +1,13 @@
-import './styles/variables.css';
-import './styles/global.css';
+import '@/styles/variables.css';
+import '@/styles/global.css';
 
-import { createElement } from './utils/dom.js';
-import { createHeader } from './components/header/header.js';
-import { createBoard } from './components/board/board.js';
-import { Modal } from './components/modal/modal.js';
-import { GameManager } from './game/game.js';
-import { createLeaderboardContent } from './components/leaderboard/leaderboard.js';
-import { UI_TEXT } from './constants/index.js';
+import { createElement } from '@/utils/dom.js';
+import { createHeader } from '@/components/header/header.js';
+import { createBoard } from '@/components/board/board.js';
+import { Modal } from '@/components/modal/modal.js';
+import { GameManager } from '@/game/game.js';
+import { createLeaderboardContent } from '@/components/leaderboard/leaderboard.js';
+import { UI_TEXT } from '@/constants/index.js';
 
 function initApp() {
   const appContainer = createElement('div', {
