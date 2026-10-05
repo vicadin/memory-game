@@ -148,30 +148,22 @@ export class GameManager {
     }, 900);
   }
 
-  /**
-   * Called when all 8 pairs have been discovered.
-   */
   handleVictory() {
     this.isGameOver = true;
 
-    // Save score to leaderboard
     saveScoreToLeaderboard(this.moves);
 
-    // Open victory modal
     this.showVictoryModal();
   }
 
-  /**
-   * Displays the Victory Modal with the final move count and actions.
-   */
   showVictoryModal() {
     const messageEl = createElement('p', {
-      text: 'Congratulations! You found all 8 pairs.',
+      text: 'Memory level: absolutely legendary 🎊',
     });
 
     const statsEl = createElement('p', {
       children: [
-        document.createTextNode('Total moves completed: '),
+        document.createTextNode('Total moves taken: '),
         createElement('span', {
           className: 'modal-highlight',
           text: String(this.moves),
@@ -181,7 +173,6 @@ export class GameManager {
 
     const modalBody = [messageEl, statsEl];
 
-    // "New Game" button in modal
     const modalNewGameBtn = createElement('button', {
       className: ['btn', 'btn-primary'],
       attrs: {
@@ -196,7 +187,6 @@ export class GameManager {
       },
     });
 
-    // "Close" button in modal
     const modalCloseBtn = createElement('button', {
       className: ['btn', 'btn-secondary'],
       attrs: {

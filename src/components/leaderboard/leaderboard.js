@@ -18,7 +18,20 @@ export function createLeaderboardContent() {
   if (records.length === 0) {
     return createElement('div', {
       className: 'leaderboard-empty',
-      text: 'No results yet. Play and finish a game to set a record!',
+      children: [
+        createElement('div', {
+          className: 'leaderboard-empty-icon',
+          text: '👻',
+        }),
+        createElement('div', {
+          className: 'leaderboard-empty-title',
+          text: 'No champions on the podium yet.',
+        }),
+        createElement('div', {
+          className: 'leaderboard-empty-sub',
+          text: 'Finish a game and claim the №1 throne!',
+        }),
+      ],
     });
   }
 
