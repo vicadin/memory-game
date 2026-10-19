@@ -2,6 +2,9 @@
 
 A classic card-matching memory game built with Vanilla JavaScript, modern CSS, and HTML. Test your visual memory by finding all matching pairs of cards in the fewest moves possible.
 
+## Demo
+🌐 https://vicadin.github.io/memory-game/
+
 ## How to Play
 
 1. Click on any card to flip it face up.
